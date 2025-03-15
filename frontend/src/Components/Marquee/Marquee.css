@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .marquee-container {
+    width: 100%;
+    background-color: #C70909; /* Light gray background */
+    color: whitesmoke; /* Black text */
+    overflow: hidden;
+    padding: 10px;
+    font-size: larger;
+    position: relative;
+  }
+  
+  .marquee-content {
+    display: flex;
+    width: 200%; /* Twice the width for seamless effect */
+    animation: marquee 40s linear infinite;
+    transition: transform 0.5s ease-out; /* Smooth stopping effect */
+  }
+  
+  .marquee-content span {
+    white-space: nowrap; /* Ensure items don't wrap to the next line */
+    margin-right: 30px; /* Space between items */
+  }
+  
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%); /* Half width for one full loop */
+    }
+  }
+  
+  /* Smooth pause animation on hover */
+  .marquee-content:hover {
+    animation-play-state: paused;
+    transform: translateX(calc(var(--paused-percentage, 0) * -50%));
+  }
+  
+  /* Responsive design for mobile screens */
+  @media (max-width: 768px) {
+    .marquee-container {
+      font-size: 14px; /* Adjust font size for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .marquee-container {
+      font-size: 12px; /* Further adjustment for very small screens */
+    }
+  }
+  
