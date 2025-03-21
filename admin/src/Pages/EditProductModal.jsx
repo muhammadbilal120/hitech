@@ -13,7 +13,7 @@ const EditProductModal = ({ product, setIsEditModalOpen, fetchList, token }) => 
     category: product.category,
     subCategory: product.subCategory,
     bestseller: product.bestseller ? "true" : "false",
-    neckType: product.neckType || "Round Neck",
+    quantity: product.quantity || 1,
     images: [],
   });
 
@@ -132,29 +132,43 @@ const EditProductModal = ({ product, setIsEditModalOpen, fetchList, token }) => 
             </div>
             <div>
               <label className="block mb-2 text-black">Category</label>
-              <input
-                type="text"
+              <select
                 name="category"
                 value={formData.category}
                 onChange={handleInputChange}
-                placeholder="Category"
                 className="w-full p-2 border rounded focus:ring focus:ring-blue-300"
-              />
+              >
+                <option value="Honda">Honda</option>
+                <option value="Yamaha">Yamaha</option>
+                <option value="Suzuki">Suzuki</option>
+              </select>
             </div>
           </div>
 
           <div>
-            <label className="block mb-2 text-black">Neck Type</label>
+            <label className="block mb-2 text-black">Subcategory</label>
             <select
-              name="neckType"
-              value={formData.neckType}
+              name="subCategory"
+              value={formData.subCategory}
               onChange={handleInputChange}
               className="w-full p-2 border rounded focus:ring focus:ring-blue-300"
             >
-              <option value="Round Neck">Round Neck</option>
-              <option value="Collar Neck">Collar Neck</option>
-              <option value="V Neck">V Neck</option>
+              <option value="70cc">70cc</option>
+              <option value="125cc">125cc</option>
+              <option value="150cc">150cc</option>
             </select>
+          </div>
+
+          <div>
+            <label className="block mb-2 text-black">Quantity</label>
+            <input
+              type="number"
+              name="quantity"
+              value={formData.quantity}
+              onChange={handleInputChange}
+              placeholder="Quantity"
+              className="w-full p-2 border rounded focus:ring focus:ring-blue-300"
+            />
           </div>
 
           <div>
@@ -167,65 +181,6 @@ const EditProductModal = ({ product, setIsEditModalOpen, fetchList, token }) => 
               className="w-full p-2 border rounded focus:ring focus:ring-blue-300 h-[10vh]"
             />
           </div>
-
-          {existingImages.length > 0 && (
-            <div>
-              <h3 className="font-semibold text-black">Existing Images:</h3>
-              <div className="flex gap-2 flex-wrap">
-                {existingImages.map((img, index) => (
-                  <div key={index} className="relative">
-                    <img
-                      src={img}
-                      alt={`Existing ${index + 1}`}
-                      className="w-20 h-20 object-cover rounded-md"
-                    />
-                    <button
-                      type="button"
-                      className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1"
-                      onClick={() => handleRemoveExistingImage(index)}
-                    >
-                      &times;
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <div>
-            <label className="block mb-2 text-black">Upload New Images</label>
-            <input
-              type="file"
-              name="images"
-              onChange={handleImageChange}
-              multiple
-              className="w-full p-2 border rounded focus:ring focus:ring-blue-300"
-            />
-          </div>
-
-          {imagePreviews.length > 0 && (
-            <div>
-              <h3 className="font-semibold text-black">New Image Previews:</h3>
-              <div className="flex gap-2 flex-wrap">
-                {imagePreviews.map((preview, index) => (
-                  <div key={index} className="relative">
-                    <img
-                      src={preview}
-                      alt={`Preview ${index + 1}`}
-                      className="w-20 h-20 object-cover rounded-md"
-                    />
-                    <button
-                      type="button"
-                      className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1"
-                      onClick={() => handleRemoveImage(index)}
-                    >
-                      &times;
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
 
           <div className="flex justify-end space-x-2">
             <button
@@ -248,6 +203,5 @@ const EditProductModal = ({ product, setIsEditModalOpen, fetchList, token }) => 
     </div>
   );
 };
-
 
 export default EditProductModal;

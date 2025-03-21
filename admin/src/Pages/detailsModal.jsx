@@ -2,7 +2,9 @@ import React from "react";
 import Modal from "react-modal";
 
 const DetailsModal = ({ product, setIsDetailsModalOpen }) => {
-  if (!product) return null; // Return null if no product is provided
+  if (!product) return null;
+  console.log("Product Data: ", product);
+ // Return null if no product is provided
 
   const closeModal = () => {
     setIsDetailsModalOpen(false);

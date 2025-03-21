@@ -115,13 +115,13 @@ const List = ({ token }) => {
                   title={`Delete ${item.name}`}
                   aria-label={`Delete ${item.name}`}
                 />
-                <FaInfoCircle
+                {/* <FaInfoCircle
                   onClick={() => showDetails(item)}
                   className="cursor-pointer text-green-500 hover:text-green-700"
                   size={25}
                   title={`Details for ${item.name}`}
                   aria-label={`Details for ${item.name}`}
-                />
+                /> */}
               </div>
             </div>
           ))
