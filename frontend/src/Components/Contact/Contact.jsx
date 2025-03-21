@@ -17,7 +17,7 @@ const Contact = () => {
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const MAX_FILE_SIZE = 5 * 1024 * 1024; 
+  const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
   const handlePhoneChange = (value) => {
     setPhone(value);
@@ -43,8 +43,9 @@ const Contact = () => {
       formData.append('attachment', file);
     }
 
-    try { const response = await fetch(backendUrl +'/api/hitech/send-email', 
-      { method: 'POST', body: formData,});
+    try {
+      const response = await fetch(backendUrl + '/api/hitech/send-email',
+        { method: 'POST', body: formData, });
 
 
 
@@ -57,16 +58,16 @@ const Contact = () => {
         setEmail('');
         setPhone('');
         setMessage('');
-        
+
         toast.success('Message sent successfully!')
         setFile(null);
       } else {
         const responseBody = await response.json();
         setFeedbackMessage(responseBody.message || 'Failed to send message.');
       }
-    // } catch (error) {
-    //   console.error('There was an error sending the email:', error);
-    //   setFeedbackMessage('Failed to send message. Please try again later.');
+      // } catch (error) {
+      //   console.error('There was an error sending the email:', error);
+      //   setFeedbackMessage('Failed to send message. Please try again later.');
     } finally {
       setIsLoading(false);
     }
@@ -198,9 +199,19 @@ const Contact = () => {
           </div>
           <div className="col-md-5">
             <div className="map-container">
-              <iframe
+              {/* <iframe
                 title="Google Map"
                 // src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13611.268734827372!2d74.3048615!3d31.4742148!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39190310aedd4ed9%3A0x55a30390118b3775!2sJss%20Devs!5e0!3m2!1sen!2s!4v1724075865463!5m2!1sen!2s"
+                src="https://maps.app.goo.gl/G6j269j1V7GMcbAn6"
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+              ></iframe> */}
+              <iframe
+                title="Google Map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4357.905242778124!2d74.3300337!3d31.5732428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDM0JzIzLjciTiA3NMKwMTknNTcuNCJF!5e0!3m2!1sen!2s!4v1714075865463"
                 width="100%"
                 height="400"
                 style={{ border: 0 }}
@@ -209,7 +220,7 @@ const Contact = () => {
               ></iframe>
             </div>
           </div>
-          <ToastContainer/>
+          <ToastContainer />
         </div>
       </div>
     </>

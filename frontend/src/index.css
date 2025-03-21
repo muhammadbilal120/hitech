@@ -126,10 +126,18 @@ body {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
+  margin: 0px -20px;
   visibility: visible;
   font-family: "Rubik", sans-serif;
   color: #222222;
 }
+
+@media only screen and (min-width: 1000px) and (max-width: 1600px) {
+  body{
+    margin: 0px;
+  }
+}
+
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
@@ -813,13 +821,15 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 .canvas_open a {
   font-size: 30px;
-  color: #ffffff;
+  color: #821C31;
   width: 43px;
   height: 41px;
   display: block;
+  border-color: #C70909;
+
   line-height: 39px;
   text-align: center;
-  border: 1px solid #ffffff;
+  /* border: 1px solid #ffffff; */
   border-radius: 3px;
 }
 @media only screen and (max-width: 767px) {

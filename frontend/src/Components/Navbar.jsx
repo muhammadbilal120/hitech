@@ -120,7 +120,7 @@ const Navbar = () => {
             <div className="offcanvas_menu">
             <div className="container">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 ">
                         <div className="canvas_open">
                             <a href="#"><i className="ion-navicon"></i></a>
                         </div>
@@ -130,10 +130,11 @@ const Navbar = () => {
                             </div>
                             <div className="header_top_links">
                                 <ul>
-                                    <li><a href="/login">Register</a></li>
-                                    <li><a href="/login">Login</a></li>
-                                    <li><a href="/cart">Shopping Cart</a></li>
-                                    <li><a href="/checkout">Checkout</a></li>
+                                    <li><Link to="/">Home</Link></li>
+                                    <li><Link to="/loginpage">Login</Link></li>
+                                    <li><Link to="/collection">Collections</Link></li>
+                                    <li><Link to="/about">About</Link></li>
+                                    <li><Link to="/contact">Contact</Link></li>
                                 </ul>
                             </div>
                         </div>

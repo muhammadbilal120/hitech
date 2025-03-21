@@ -30,12 +30,12 @@ const About = () => {
               style={{
                 fontSize: "90px",
                 fontWeight: "700",
-                color: "#89d3b8",
+                color: "#821C31",
                 display: "block",
                 lineHeight: "1",
               }}
             >
-              MUTE !
+              Hitech !
             </span>
           </h2>
           <h3
@@ -46,7 +46,7 @@ const About = () => {
               fontWeight: 600,
             }}
           >
-            Let your outfit speak📣
+            Let your products speak📣
           </h3>
           <h5
             style={{
@@ -56,11 +56,11 @@ const About = () => {
               textAlign: "start",
             }}
           >
-            Welcome to Mute
+            Welcome to Hitech
           </h5>
           <hr style={{ color: "black", height: "2px" }} />
           <p style={{ textAlign: "start", marginTop: "24px" }}>
-            Where silence speaks volumes. Our clothing brand is inspired by the
+            Where silence speaks volumes. Our brand is inspired by the
             quiet power of understated elegance and minimalist design. At Mute,
             we believe that true style doesn’t need to shout—it whispers. Our
             collections are carefully curated to embody smplicity,
@@ -74,7 +74,7 @@ const About = () => {
           </p>
           <h5 style={{ textAlign: "start", fontWeight: "600" }}>OUR ADDRESS</h5>
           <p style={{ textAlign: "start" }}>
-            Street 26, Block C Faisal Town, Lahore, Punjab, Pakistan
+            Lahore, Punjab, Pakistan
           </p>
         </div>
       </div>
