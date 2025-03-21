@@ -61,11 +61,11 @@ const updateProduct = async (req, res) => {
 
         const images = req.files
             ? [
-                  req.files.image1?.[0],
-                  req.files.image2?.[0],
-                  req.files.image3?.[0],
-                  req.files.image4?.[0],
-              ].filter(Boolean)
+                req.files.image1?.[0],
+                req.files.image2?.[0],
+                req.files.image3?.[0],
+                req.files.image4?.[0],
+            ].filter(Boolean)
             : [];
 
         const imageUrl = await Promise.all(
@@ -84,7 +84,7 @@ const updateProduct = async (req, res) => {
         product.bestseller = bestseller === "true" ? true : bestseller === "false" ? false : product.bestseller;
         product.neckType = neckType || product.neckType;
         product.quantity = quantity || product.quantity;
-       
+
         if (imageUrl.length > 0) {
             product.image = imageUrl;
         }
@@ -137,51 +137,49 @@ const singleProduct = async (req, res) => {
 
 const getProducts = async (req, res) => {
     try {
-      const products = await productModel.find({}, 'name image date category newPrice').lean();
-  
-      const orders = await orderModel.aggregate([
-        { $unwind: '$items' },
-        {
-          $group: {
-            _id: { productId: '$items._id' },
-            totalSold: { $sum: '$items.quantity' }
-          }
-        }
-      ]);
-  
-      const soldQuantitiesMap = orders.reduce((map, order) => {
-        if (!map[order._id.productId]) {
-          map[order._id.productId] = {};
-        }
-        map[order._id.productId] = order.totalSold;
-        return map;
-      }, {});
-  
-      const responseProducts = products.map(product => {
-        const soldQuantities = soldQuantitiesMap[product._id] || 0;
-        const totalQuantity = product.quantity || 0;
-        const remainQuantity = totalQuantity - soldQuantities;
-  
-        return {
-          _id: product._id,
-          name: product.name,
-          totalQuantity: totalQuantity,
-          totalSoldQuantity: soldQuantities,
-          remainQuantity: remainQuantity,
-          image: product.image,
-          date: product.date,
-          category: product.category, 
-          newPrice: product.newPrice 
-        };
-      });
-  
-      res.json({
-        success: true,
-        products: responseProducts
-      });
+        const products = await productModel.find({}, 'name image date category newPrice quantity').lean();
+        const orders = await orderModel.aggregate([
+            { $unwind: '$items' },
+            {
+                $group: {
+                    _id: { productId: '$items._id' },
+                    totalSold: { $sum: '$items.quantity' }
+                }
+            }
+        ]);
+
+        const soldQuantitiesMap = orders.reduce((map, order) => {
+            if (!map[order._id.productId]) {
+                map[order._id.productId] = {};
+            }
+            map[order._id.productId] = order.totalSold;
+            return map;
+        }, {});
+
+        const responseProducts = products.map(product => {
+            const soldQuantities = soldQuantitiesMap[product._id] || 0;
+            const totalQuantity = product.quantity || 0;
+            const remainQuantity = totalQuantity - soldQuantities;
+
+            return {
+                _id: product._id,
+                name: product.name,
+                totalQuantity: totalQuantity,
+                totalSoldQuantity: soldQuantities,
+                remainQuantity: remainQuantity,
+                image: product.image,
+                date: product.date,
+                category: product.category,
+                newPrice: product.newPrice
+            };
+        });
+        res.json({
+            success: true,
+            products: responseProducts
+        });
     } catch (error) {
-      console.error('Error fetching product data:', error);
-      res.status(500).json({ success: false, message: error.message });
+        console.error('Error fetching product data:', error);
+        res.status(500).json({ success: false, message: error.message });
     }
 };
 
